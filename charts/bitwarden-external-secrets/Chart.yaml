@@ -1,5 +1,5 @@
 apiVersion: v2
-name: bitwarden-secrets
+name: bitwarden-external-secrets
 description: Bitwarden secrets without secrets managers
 type: application
 version: 0.1.0
