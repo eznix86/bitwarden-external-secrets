@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitwarden-cli
+  labels:
+    app.kubernetes.io/instance: bitwarden-external-secrets
+    app.kubernetes.io/part-of: external-secrets
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: bitwarden-external-secrets
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: bitwarden-external-secrets
+        app.kubernetes.io/part-of: external-secrets
+    spec:
+      containers:
+        - name: bitwarden-cli
+          image: "{{ .Values.image.repository }}{{- if .Values.image.tag }}:{{ .Values.image.tag }}{{- end }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: BW_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: bitwarden-cli
+                  key: BW_HOST
+            - name: BW_CLIENTID
+              valueFrom:
+                secretKeyRef:
+                  name: bitwarden-cli
+                  key: BW_CLIENTID
+            - name: BW_CLIENTSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: bitwarden-cli
+                  key: BW_CLIENTSECRET
+            - name: BW_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: bitwarden-cli
+                  key: BW_PASSWORD
+          ports:
+            - name: http
+              containerPort: 8087
+              protocol: TCP
+          livenessProbe:
+            exec:
+              command:
+                - wget
+                - -q
+                - http://127.0.0.1:8087/sync?force=true
+                - --post-data=''
+            initialDelaySeconds: 20
+            failureThreshold: 3
+            timeoutSeconds: 10
+            periodSeconds: 120
+          readinessProbe:
+            tcpSocket:
+              port: 8087
+            initialDelaySeconds: 20
+            failureThreshold: 3
+            timeoutSeconds: 1
+            periodSeconds: 10
+          startupProbe:
+            tcpSocket:
+              port: 8087
+            initialDelaySeconds: 10
+            failureThreshold: 30
+            timeoutSeconds: 1
+            periodSeconds: 5

@@ -1,0 +1,12 @@
+services:
+  bitwarden-cli:
+    platform: linux/amd64
+    image: eznix86/bitwarden-cli:latest
+    container_name: bitwarden-cli
+    volumes:
+      - ./entrypoint.sh:/entrypoint.sh
+    ports:
+      - "8087:8087"
+    env_file:
+      - .env
+    

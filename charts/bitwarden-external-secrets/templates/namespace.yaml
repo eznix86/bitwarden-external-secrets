@@ -1,0 +1,8 @@
+{{- if .Release.Namespace }}
+{{- if ne .Release.Namespace "bitwarden-external-secrets" }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Release.Namespace }}
+{{- end }}
+{{- end }}
