@@ -35,6 +35,5 @@ WORKDIR ${HOME}
 
 EXPOSE 8087
 
-
 ENTRYPOINT ["/usr/bin/dumb-init", "--", "/entrypoint.sh"]
 CMD ["bw", "serve", "--hostname", "0.0.0.0"]
