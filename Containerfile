@@ -27,8 +27,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* bw-linux-${BW_CLI_VERSION}.zip
 
-COPY --chown=nonroot:nonroot entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY --chown=nonroot:nonroot --chmod=755 entrypoint.sh /entrypoint.sh
 
 USER nonroot
 WORKDIR ${HOME}
