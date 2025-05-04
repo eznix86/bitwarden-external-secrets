@@ -4,7 +4,7 @@ A Helm chart for using Bitwarden with External Secrets Operator in Kubernetes.
 
 ## Purpose
 
-This is a chart to use (vaultwarden)[https://github.com/dani-garcia/vaultwarden] or even (bitwarden)[https://bitwarden.com] with kubernetes secrets.
+This is a chart to use [vaultwarden](https://github.com/dani-garcia/vaultwarden) or even [bitwarden](https://bitwarden.com) with kubernetes secrets.
 
 > [!NOTE]
 > This is not similar to bitwarden kubernetes operator, which uses bitwarden as a secrets manager under the hood.
@@ -26,7 +26,7 @@ helm install bitwarden-external-secrets eznix86/bitwarden-external-secrets \
 
 `bw_clientid` and `bw_clientsecret` can be found on your vaultwarden/bitwarden app settings.
 
-# Supported Fields
+### Supported Fields
 
 
 | Field | Supported | Cluster Store Name | Property |
@@ -40,7 +40,7 @@ helm install bitwarden-external-secrets eznix86/bitwarden-external-secrets \
 | key fingerprint | ✅ | bitwarden-ssh-key | keyFingerprint |
 | attachments* | ❌ | - | - |
 
-### Example
+### Deploying a secret
 
 ```yaml
 apiVersion: external-secrets.io/v1beta1
@@ -112,6 +112,8 @@ spec:
 
 ### Future Improvements
 
-- [ ] Use (kro.run)[https://kro.run] to create a custom resource
-  - blocking: (https://github.com/kro-run/kro/issues/17)[kro.run issue]
+- [ ] Use [kro.run](https://kro.run) to create a custom resource
+  - blocked by [kro.run issue](https://github.com/kro-run/kro/issues/17)
+
+
 
