@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   bitwarden-external-secrets:
   - apiVersion: v2
+    appVersion: 0.3.0
+    created: "2025-06-05T22:42:01.596136055Z"
+    description: Bitwarden secrets without secrets managers
+    digest: 554d0127232c78a0bae47fe286ff08c85d60afedd4dc8b35dec3de237ea01409
+    name: bitwarden-external-secrets
+    type: application
+    urls:
+    - https://github.com/eznix86/bitwarden-external-secrets/releases/download/bitwarden-external-secrets-0.3.0/bitwarden-external-secrets-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     appVersion: 0.2.2
     created: "2025-05-07T21:37:11.272883994Z"
     description: Bitwarden secrets without secrets managers
@@ -49,4 +59,4 @@ entries:
     urls:
     - https://github.com/eznix86/bitwarden-external-secrets/releases/download/bitwarden-external-secrets-0.1.0/bitwarden-external-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2025-05-07T21:37:11.272901908Z"
+generated: "2025-06-05T22:42:01.596156623Z"
